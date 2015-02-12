@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public class GUI extends JFrame{
 	private ExercicioFacade gerenteProf;
 	JButton botao1, botao2, botao3, botao4;
-	
+	// interface
 	public GUI(){
 		super("Sistema");
 		
