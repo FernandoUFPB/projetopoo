@@ -14,6 +14,7 @@ public class ExercicioFacadeTest {
 		this.exercicio = new ExercicioFacade();
 	}
 	@Test
+	//NOVO TESTE
 	public void testCadastroDeProfessor() {
 		try {
 			exercicio.cadastrarProfessor("ayla", "123");
