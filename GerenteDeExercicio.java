@@ -1,4 +1,4 @@
-package br.com.ufpb.projetoDisciplinaPOO;
+package br.com.ufpb.projetopoo;
 
 import java.util.Collections;
 import java.util.LinkedList;

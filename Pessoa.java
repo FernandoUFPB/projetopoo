@@ -1,4 +1,4 @@
-package br.com.ufpb.projetoDisciplinaPOO;
+package br.com.ufpb.projetopoo;
 
 
 public abstract class Pessoa {

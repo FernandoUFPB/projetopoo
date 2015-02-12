@@ -1,4 +1,4 @@
-package br.com.ufpb.projetoDisciplinaPOO;
+package br.com.ufpb.projetopoo;
 public class Questao {
 	private int numQuestao;
 	private String questao;

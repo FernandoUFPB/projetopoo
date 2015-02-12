@@ -1,4 +1,4 @@
-package br.com.ufpb.projetoDisciplinaPOO;
+package br.com.ufpb.projetopoo;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
