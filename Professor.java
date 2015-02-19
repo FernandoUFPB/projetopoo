@@ -1,4 +1,4 @@
-package br.com.ufpb.projetoDisciplinaPOO;
+package br.com.ufpb.projetopoo;
 
 public class Professor extends Pessoa{
 
@@ -9,7 +9,7 @@ public class Professor extends Pessoa{
 		super(texto, emailRemetente, emailDestinatario);
 	}
 	public Professor(){
-		super("Sem nome", "Sem matricula");
+		super("sem nome", "sem matricula");
 	}
 	public String getDescricao(){
 		return "Professor";

@@ -1,11 +1,11 @@
-package br.com.ufpb.projetoDisciplinaPOO;
+package br.com.ufpb.projetopoo;
 
 import java.util.ArrayList;
 import java.util.List;
 public class Testa {
 	public static void main(String[] args) {
 		ExercicioFacade g = new ExercicioFacade();
-		Exercicio e = new Exercicio(10);
+		Exercicio e = new Exercicio();
 		System.out.println("ok");
 	}
 }

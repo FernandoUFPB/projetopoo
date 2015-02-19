@@ -1,16 +1,19 @@
-package br.com.ufpb.projetoDisciplinaPOO;
+package br.com.ufpb.projetopoo;
 
 public class Questao {
 	private int numQuestao;
 	private String questao;
 	private TipoQuestao tipo;
 	public Questao(int numQuestao, String questao, TipoQuestao tipo){
-		this.numQuestao = numQuestao;	
+		this.numQuestao = numQuestao;
 		this.questao = questao;
 		this.tipo = tipo;
 	}
 	public TipoQuestao getTipo(){
 		return tipo;
+	}
+	public void getTipo(TipoQuestao tipo){
+		this.tipo = tipo;
 	}
 	public void setNumQuestao(int num){
 		this.numQuestao = num;
@@ -28,4 +31,5 @@ public class Questao {
 		return this.numQuestao+" Questão: "+this.questao;
 	}
 }
+
 

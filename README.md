@@ -1,4 +1,2 @@
-Projeto
-=======
-
-Projeto da disciplina de programação orientada a objeto
+# projetopoo
+Projeto da disciplina de programação OO
