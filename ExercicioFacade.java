@@ -5,14 +5,13 @@ import java.util.List;
 public class ExercicioFacade {
 	private GerenteDeAluno gerenteDeAluno;
 	private GerenteDeExercicio gerenteDeExercicio;
-	private GerenteDeFeedback gerenteDeFeedback;
 	private GerenteDeProfessor gerenteDeProfessor;
 	public ExercicioFacade(){
 		this.gerenteDeExercicio = new GerenteDeExercicio();
 		this.gerenteDeAluno = new GerenteDeAluno();
 		this.gerenteDeProfessor = new GerenteDeProfessor();
-		this.gerenteDeFeedback = new GerenteDeFeedback();
 	}
+	
 	public void cadastrarExercicio(Exercicio e){
 		this.gerenteDeExercicio.cadastrarExercicio(e);
 	}
@@ -33,12 +32,7 @@ public class ExercicioFacade {
 	public boolean corrigirExercicio(String nomeExercicio, String matriculaAluno) throws ExercicioInexistenteException {
 		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio,matriculaAluno);
 	}
-	public void enviarFeedbackParaAlunos() {
-		// TODO Auto-generated method stub
-	}
-	public void enviarFeedbackParaProfessor() {
-		// TODO Auto-generated method stub
-	}
+	
 	public Questao pesquisaQuestaoDeExercicio(String nomeExercicio, int numQuestao)
 			throws QuestaoInexistenteException, ExercicioInexistenteException{
 		return this.gerenteDeExercicio.pesquisaQuestaoDeExercicio(nomeExercicio, numQuestao);

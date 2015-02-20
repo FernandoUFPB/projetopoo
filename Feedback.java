@@ -1,33 +1,38 @@
 package br.com.ufpb.projetopoo;
 
 public class Feedback {
-	private Exercicio nomeExercicio;
-	private Aluno matriculaAluno;
-	private Professor matriculaProf;
+	private String nomeExercicio;
+	private String feedback;
+	private String matricula;
 	
-	public Feedback(){
-		this.matriculaAluno.getMatricula()=new 
+	public Feedback(String NomeExer, String matricula, String comentario){
+		this.nomeExercicio=NomeExer;
+		this.matricula=matricula;
+		this.feedback=comentario;
 	}
-	
-	public Exercicio getNomeExercicio() {
+
+	public String getNomeExercicio() {
 		return nomeExercicio;
 	}
-	public void setNomeExercicio(Exercicio nomeExercicio) {
+
+	public void setNomeExercicio(String nomeExercicio) {
 		this.nomeExercicio = nomeExercicio;
 	}
-	public Aluno getMatriculaAluno() {
-		return matriculaAluno;
-	}
-	public void setMatriculaAluno(Aluno matriculaAluno) {
-		this.matriculaAluno = matriculaAluno;
-	}
-	public Professor getMatriculaProf() {
-		return matriculaProf;
-	}
-	public void setMatriculaProf(Professor matriculaProf) {
-		this.matriculaProf = matriculaProf;
-	}
-	
-	
 
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+	
 }

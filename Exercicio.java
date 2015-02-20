@@ -38,5 +38,7 @@ public class Exercicio {
 	public void adicionaCadastroDeRespostaDoAluno(CadastroDeRespostaDoAluno r){
 		this.cadastroDeRespostaDoAluno.add(r);
 	}
+	
+	
 
 }
