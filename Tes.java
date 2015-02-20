@@ -1,5 +1,8 @@
 package br.com.ufpb.projetopoo;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Tes {
 
 	public static void main(String[] args) throws ExercicioInexistenteException {
@@ -7,8 +10,9 @@ public class Tes {
 		GerenteDeFeedback feedback = new GerenteDeFeedback();
 		Aluno a = new Aluno("fernando", "99");
 		Professor p = new Professor("Diogo", "03");
-		
 		Exercicio exer = new Exercicio();
+		
+		
 		exer.setNomeExercicio("poo");
 		exer.cadastrarQuestao(1, "Libras é uma lingua de sinais V ou F?", TipoQuestao.QUESTAO_V_OU_F);
 		exer.cadastrarQuestao(2, "Alta coesão e baixo acoplamento é um bom design para um projeto V ou F?", TipoQuestao.QUESTAO_V_OU_F);
@@ -17,6 +21,8 @@ public class Tes {
 		
 		exer.cadastrarQuestao(3, "Quais os tipos primitivos na liguagem de programação Java?", TipoQuestao.QUESTAO_DISSERTATIVA);
 		exer.cadastrarRespostaDeQuestao(3, "byte, short, int, long, float, double, char e boolean", TipoQuestao.QUESTAO_DISSERTATIVA);
+		
+		
 		
 		feedback.CadastarFeedback(exer.getNomeExercicio(), p.getMatricula(),"A resposta deverá ter no mínimo esses cinco tipos: int, double, boolean, short e long");
 		//Na linha acima será gravado um feedback do professor para o aluno.

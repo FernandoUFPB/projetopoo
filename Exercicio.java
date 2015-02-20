@@ -39,6 +39,4 @@ public class Exercicio {
 		this.cadastroDeRespostaDoAluno.add(r);
 	}
 	
-	
-
 }

@@ -3,6 +3,7 @@ package br.com.ufpb.projetopoo;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
 public class GerenteDeExercicio {
 	private List < Exercicio > exercicios;
 	public GerenteDeExercicio(){
@@ -11,6 +12,7 @@ public class GerenteDeExercicio {
 	public void cadastrarExercicio(Exercicio e){
 		this.exercicios.add(e);
 	}
+	
 	public Questao pesquisaQuestaoDeExercicio(String nomeExercicio, int numQuestao)
 			throws QuestaoInexistenteException, ExercicioInexistenteException{
 		Exercicio e = this.pesquisarExercicio(nomeExercicio);
