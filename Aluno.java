@@ -1,5 +1,8 @@
 package br.com.ufpb.projetopoo;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
 public class Aluno extends Pessoa{
 	public Aluno(String nome, String matricula){
 		super(nome, matricula);

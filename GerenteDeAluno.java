@@ -1,5 +1,9 @@
 package br.com.ufpb.projetopoo;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

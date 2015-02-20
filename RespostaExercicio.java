@@ -3,7 +3,11 @@ package br.com.ufpb.projetopoo;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 
+=======
+import projetopoo.Resposta;
+>>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
 public class RespostaExercicio {
 	private Aluno aluno;
 	private List<Resposta> respostas;
@@ -30,3 +34,7 @@ public class RespostaExercicio {
 		return respostas;
 	}
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
