@@ -1,12 +1,11 @@
 package br.com.ufpb.projetopoo;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Tes {
 
 	public static void main(String[] args) throws ExercicioInexistenteException {
-		ExercicioFacade sistema = new ExercicioFacade();
+		GerenteDeExercicio sistema = new GerenteDeExercicio();
 		GerenteDeFeedback feedback = new GerenteDeFeedback();
 		Aluno a = new Aluno("fernando", "99");
 		Professor p = new Professor("Diogo", "03");
@@ -22,8 +21,6 @@ public class Tes {
 		exer.cadastrarQuestao(3, "Quais os tipos primitivos na liguagem de programação Java?", TipoQuestao.QUESTAO_DISSERTATIVA);
 		exer.cadastrarRespostaDeQuestao(3, "byte, short, int, long, float, double, char e boolean", TipoQuestao.QUESTAO_DISSERTATIVA);
 		
-		
-		
 		feedback.CadastarFeedback(exer.getNomeExercicio(), p.getMatricula(),"A resposta deverá ter no mínimo esses cinco tipos: int, double, boolean, short e long");
 		//Na linha acima será gravado um feedback do professor para o aluno.
 		
@@ -36,6 +33,15 @@ public class Tes {
 		
 		exer.adicionaCadastroDeRespostaDoAluno(respostaAluno);
 		sistema.cadastrarExercicio(exer);
+		
+		
+		try {
+			sistema.gravarQuestoesEmArquivo("Questoes.txt");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 		
 		try {

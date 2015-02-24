@@ -23,6 +23,7 @@ public class FeedbackFacadeTest {
 			
 			assertEquals("Estava difícil, mas consegui!", gerente.PesquisaFeedback(exer.getNomeExercicio(), a.getMatricula()));
 			
+			
 		} catch (FeedbackInexistenteException e) {
 			fail("Falhoou");
 		}

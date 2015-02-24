@@ -16,11 +16,7 @@ public class GerenteDeProfessor {
 		}
 		this.professores.add(new Professor(nome, matricula));
 	}
-<<<<<<< HEAD
 	
-=======
- 
->>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
 	public void removeProfessor(String matricula)
 			throws ProfessorInexistenteException {
 		boolean inexistente = false;

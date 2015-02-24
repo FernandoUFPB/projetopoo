@@ -1,9 +1,5 @@
 package br.com.ufpb.projetopoo;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
 public abstract class Pessoa {
 	private String nome;
 	private String matricula;

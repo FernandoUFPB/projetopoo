@@ -6,10 +6,6 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-<<<<<<< HEAD
-=======
-
->>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
 public class ExercicioFacadeTest {
 	private ExercicioFacade exercicio;
 	@Before
@@ -17,10 +13,6 @@ public class ExercicioFacadeTest {
 		this.exercicio = new ExercicioFacade();
 	}
 	@Test
-<<<<<<< HEAD
-=======
-	//NOVO TESTE
->>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
 	public void testCadastroDeProfessor() {
 		try {
 			exercicio.cadastrarProfessor("ayla", "123");
@@ -34,7 +26,6 @@ public class ExercicioFacadeTest {
 			fail("não deve lançar essa exceção");
 		}
 	}
-<<<<<<< HEAD
 	@Test
 	public void testCadastroDeExercicio(){
 		Exercicio e = new Exercicio();
@@ -56,7 +47,4 @@ public class ExercicioFacadeTest {
 		}
 	}
 	
-=======
-
->>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
 }

@@ -1,24 +1,74 @@
 package br.com.ufpb.projetopoo;
 
-<<<<<<< HEAD
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-=======
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
->>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
+
 public class GerenteDeExercicio {
 	private List < Exercicio > exercicios;
 	public GerenteDeExercicio(){
 		this.exercicios = new LinkedList<Exercicio>();
-<<<<<<< HEAD
 	}
 	public void cadastrarExercicio(Exercicio e){
 		this.exercicios.add(e);
 	}
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void gravarQuestoesEmArquivo(String nomeArquivo)
+			throws IOException {
+		BufferedWriter gravador = null;
+		try {
+			gravador = new BufferedWriter(new FileWriter(nomeArquivo));
+			for (Exercicio e: this.exercicios){
+				//gravador.write(e.getNomeExercicio()+"\n");
+				
+				for(Questao e2: e.getQuestoes()){
+					
+					gravador.write(e2.getNumQuestao()+"\n");
+					
+					gravador.write(e2.getQuestao()+"\n");
+					//gravador.write(e2.toString()+"\n");
+					gravador.write(e2.getTipo()+"\n");
+				}
+			}
+		} finally {
+			if (gravador!=null){
+				gravador.close();
+			}
+		}		
+	}
+	
+	/*public void carregarDisciplinasDeArquivo(String nomeArquivo)
+			throws QuestaoInexistenteException, IOException {
+		BufferedReader leitor=null;
+		try{
+			leitor = new BufferedReader(new FileReader(nomeArquivo));
+			String nomeExercicio=null;
+			do{
+				nomeExercicio=leitor.readLine();
+				if(nomeExercicio!=null){
+					int num = Integer.parseInt(leitor.readLine());
+					String questao = leitor.readLine();
+					String tipo = leitor.readLine();//===========
+		//			this.cadastrarQuestao(new Questao(num,questao,TipoQuestao tipo));
+				}
+			} while(nomeExercicio!=null);
+			
+			
+		}finally{
+			if(leitor!=null){
+				leitor.close();
+			}
+		}
+			
+	}*/
+		
 	
 	public Questao pesquisaQuestaoDeExercicio(String nomeExercicio, int numQuestao)
 			throws QuestaoInexistenteException, ExercicioInexistenteException{
@@ -86,45 +136,3 @@ public class GerenteDeExercicio {
 	
 	
 }
-=======
-	} 
-	public void cadastrarExercicio(Exercicio e){
-		this.exercicios.add(e);
-	}
-	public List<Exercicio> listarExercíciosCadastrados() {
-		return exercicios;
-	}
-
-	public void corrigirExercicio(int numExercicio, String matriculaAluno) {
-		// TODO Auto-generated method stub
-	
-	}
-	public void atualizarExercício() {
-		// TODO Auto-generated method stub
-		
-	}
-	public Exercicio sortearExercício() {
-		// altera a ordem aleatóriamente
-		Collections.shuffle(exercicios);
-		// pega qualquer indice. pegamos o primeiro para conveniencia.
-		return exercicios.get(0);
-	}		
-	public Exercicio pesquisarExercicio(int numExercicio)
-			throws ExercicioInexistenteException {
-		for(Exercicio e : this.exercicios){
-			if(e.getNumExercicio() == numExercicio){
-				return e;
-			}
-		}
-		throw new ExercicioInexistenteException("Exercicio Inexistente "+numExercicio);
-	}
-}
-
-//altera a ordem aleatóriamente
-//Collections.shuffle(exercicios);
-//Random rnd = new Random();
-//int quantElemento = exercicios.size();
-//int numSorteior = rnd.nextInt(quantElemento);//Gera um número aleatório (0 – n)
-//pega qualquer indice. pegamos o primeiro para conveniencia.
-//return exercicios.get(numSorteior);
->>>>>>> 2b67ff6f0bd4e86e7813be14fcc1d813d383ddcc
