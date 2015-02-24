@@ -1,28 +1,45 @@
 package br.com.ufpb.projetopoo;
 
-
 import java.util.Collection;
 import java.util.List;
 public class ExercicioFacade {
 	private GerenteDeAluno gerenteDeAluno;
 	private GerenteDeExercicio gerenteDeExercicio;
-	private GerenteDeFeedback gerenteDeFeedback;
 	private GerenteDeProfessor gerenteDeProfessor;
 	public ExercicioFacade(){
 		this.gerenteDeExercicio = new GerenteDeExercicio();
 		this.gerenteDeAluno = new GerenteDeAluno();
 		this.gerenteDeProfessor = new GerenteDeProfessor();
-		this.gerenteDeFeedback = new GerenteDeFeedback();
+	}
+	
+	public void cadastrarExercicio(Exercicio e){
+		this.gerenteDeExercicio.cadastrarExercicio(e);
+	}
+	public List<Exercicio> listarExercíciosCadastrados() {
+		return this.gerenteDeExercicio.listarExercíciosCadastrados();
+	}
+	public Exercicio pesquisarExercicio(String nomeExercicio)
+			throws ExercicioInexistenteException {
+		return this.gerenteDeExercicio.pesquisarExercicio(nomeExercicio);
+	}
+	public Exercicio sortearExercício() {
+		return this.gerenteDeExercicio.sortearExercício();
+	}
+	public void atualizarExercício(String nomeExercicio, int numQuestao, String questao) 
+			throws ExercicioInexistenteException {
+		this.gerenteDeExercicio.atualizarExercicio(nomeExercicio, numQuestao, questao);
+	}
+	public boolean corrigirExercicio(String nomeExercicio, String matriculaAluno) throws ExercicioInexistenteException {
+		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio,matriculaAluno);
+	}
+	
+	public Questao pesquisaQuestaoDeExercicio(String nomeExercicio, int numQuestao)
+			throws QuestaoInexistenteException, ExercicioInexistenteException{
+		return this.gerenteDeExercicio.pesquisaQuestaoDeExercicio(nomeExercicio, numQuestao);
 	}
 	public void cadastrarProfessor(String nome, String matricula)
 			throws ProfessorJaExisteException {
 		this.gerenteDeProfessor.cadastrarProfessor(nome, matricula);
-	}
-	public void alocaProfessorAExercicio(int numExercicio, String matriculaProf)
-			throws ProfessorInexistenteException, ExercicioInexistenteException{
-		Professor prof = this.gerenteDeProfessor.pesquisaProfessorPelaMatricula(matriculaProf);
-		Exercicio e = this.pesquisarExercicio(numExercicio);
-		e.setProfessor(prof);
 	}
 	public void removeProfessor(String matriculaProf)
 			throws ProfessorInexistenteException {
@@ -35,7 +52,6 @@ public class ExercicioFacade {
 	public List<Professor> obterListaDeProfessores() {
 		return this.gerenteDeProfessor.obterListaDeProfessores();
 	}
-	
 	public void cadastraAluno(String nome, String matricula)
 			throws AlunoJaExisteException {
 		this.gerenteDeAluno.cadastraAluno(nome, matricula);
@@ -50,35 +66,5 @@ public class ExercicioFacade {
 	public Collection<Aluno> obterListaDeAlunos() {
 		return this.gerenteDeAluno.obterListaDeAlunos();
 	}
-	
-	public void cadastrarExercicio(Exercicio e){
-		this.gerenteDeExercicio.cadastrarExercicio(e);
-	}
-	public List<Exercicio> listarExercíciosCadastrados() {
-		return this.gerenteDeExercicio.listarExercíciosCadastrados();
-	}
 
-	public void corrigirExercicio(int numExercicio, String matriculaAluno) {
-		// TODO Auto-generated method stub
-	
-	}
-	public Exercicio sortearExercício() {
-		return this.gerenteDeExercicio.sortearExercício();
-	}
-	public void atualizarExercício() {
-		// TODO Auto-generated method stub
-		
-	}
-	public Exercicio pesquisarExercicio(int numExercicio)
-			throws ExercicioInexistenteException {
-		return this.gerenteDeExercicio.pesquisarExercicio(numExercicio);
-	}
-	
-	public void enviarFeedbackParaAlunos() {
-		// TODO Auto-generated method stub
-	}
-	public void enviarFeedbackParaProfessor(String texto,
-			String emailRemetente, String emailDestinatario) {
-		// TODO Auto-generated method stub
-	}
 }

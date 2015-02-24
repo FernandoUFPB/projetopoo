@@ -1,32 +1,31 @@
 package br.com.ufpb.projetopoo;
 
-import projetopoo.TipoQuestao;
-
 public class Resposta {
-	private int numQuestao;
+	private int numResposta;
 	private String resposta;
 	private TipoQuestao tipo;
-	public Resposta(){
-		
-	}
 	public Resposta(int numQuestao, String resposta, TipoQuestao tipo){
-		this.numQuestao = numQuestao;
+		this.numResposta = numQuestao;
 		this.resposta = resposta;
 		this.tipo = tipo;
 	}
+	
 	public TipoQuestao getTipo(){
 		return tipo;
 	}
-	public void setNumQuestao(int num){
-		this.numQuestao = num;
+	public void setTipo(TipoQuestao tipo){
+		this.tipo = tipo;
 	}
-	public int getNumQuestao(){
-		return numQuestao;
+	public int getNumResposta(){
+		return numResposta;
 	}
-	public void setResposta(String resposta){
-		this.resposta = resposta;
+	public void setNumResposta(int num){
+		this.numResposta = num;
 	}
 	public String getResposta(){
 		return resposta;
+	}
+	public void setResposta(String resposta){
+		this.resposta = resposta;
 	}
 }

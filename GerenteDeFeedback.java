@@ -2,26 +2,22 @@ package br.com.ufpb.projetopoo;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import projetopoo.Pessoa;
-import projetopoo.Professor;
-
-
 public class GerenteDeFeedback {
-	private List<Pessoa> feedbacks;
+	private List<Feedback> feedbacks;
 	public GerenteDeFeedback(){
-		this.feedbacks = new ArrayList<Pessoa>();
+		this.feedbacks = new ArrayList<Feedback>();
 	}
-	public void enviarFeedbackParaAlunos() {
-		// TODO Auto-generated method stub
-		
-		
+	
+	public void CadastarFeedback(String nomeExer, String matricula, String comentario) {
+		this.feedbacks.add(new Feedback(nomeExer, matricula, comentario));
 	}
-	public void enviarFeedbackParaProfessor(String texto, String emailRemetente, String emailDestinatario) {
-		//TODO
-		
+	public String PesquisaFeedback(String nomeExer, String matricula) throws FeedbackInexistenteException{
+		for(Feedback f : this.feedbacks){
+			if(f.getNomeExercicio().equals(nomeExer) && f.getMatricula().equals(matricula)){
+				return f.getFeedback();
+			}
+		}
+		throw new FeedbackInexistenteException("Não existe feedback para  esta matricula!");
 	}
-	public List<Pessoa> pesquisaTodosFeedbacks(){
-		return null;
-	}
+	
 }

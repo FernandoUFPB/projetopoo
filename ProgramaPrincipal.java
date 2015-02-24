@@ -1,6 +1,5 @@
 package br.com.ufpb.projetopoo;
 
-import projetopoo.GUI;
 
 public class ProgramaPrincipal {
 
