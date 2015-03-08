@@ -11,9 +11,11 @@ public class ExercicioFacade {
 		this.gerenteDeAluno = new GerenteDeAluno();
 		this.gerenteDeProfessor = new GerenteDeProfessor();
 	}
-	
 	public void cadastrarExercicio(Exercicio e){
 		this.gerenteDeExercicio.cadastrarExercicio(e);
+	}
+	public void removeExercico(String nomeExercicio) throws ExercicioInexistenteException{
+		this.gerenteDeExercicio.removeExercicio(nomeExercicio);
 	}
 	public List<Exercicio> listarExercíciosCadastrados() {
 		return this.gerenteDeExercicio.listarExercíciosCadastrados();
@@ -29,13 +31,12 @@ public class ExercicioFacade {
 			throws ExercicioInexistenteException {
 		this.gerenteDeExercicio.atualizarExercicio(nomeExercicio, numQuestao, questao);
 	}
-	public boolean corrigirExercicio(String nomeExercicio, String matriculaAluno) throws ExercicioInexistenteException {
-		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio,matriculaAluno);
-	}
-	
 	public Questao pesquisaQuestaoDeExercicio(String nomeExercicio, int numQuestao)
 			throws QuestaoInexistenteException, ExercicioInexistenteException{
 		return this.gerenteDeExercicio.pesquisaQuestaoDeExercicio(nomeExercicio, numQuestao);
+	}
+	public String corrigirExercicio(String nomeExercicio, String matriculaAluno) throws ExercicioInexistenteException {
+		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio, matriculaAluno);
 	}
 	public void cadastrarProfessor(String nome, String matricula)
 			throws ProfessorJaExisteException {
@@ -52,7 +53,7 @@ public class ExercicioFacade {
 	public List<Professor> obterListaDeProfessores() {
 		return this.gerenteDeProfessor.obterListaDeProfessores();
 	}
-	public void cadastraAluno(String nome, String matricula)
+	public void cadastrarAluno(String nome, String matricula)
 			throws AlunoJaExisteException {
 		this.gerenteDeAluno.cadastraAluno(nome, matricula);
 	}
@@ -66,5 +67,10 @@ public class ExercicioFacade {
 	public Collection<Aluno> obterListaDeAlunos() {
 		return this.gerenteDeAluno.obterListaDeAlunos();
 	}
-
+	public void cadastrarRespostaDoExercicio(RespostaDoExercicio r){
+		this.gerenteDeExercicio.cadastrarRespostaDoExercicio(r);
+	}
+	public List<RespostaDoExercicio> getRespostaDoExercicio(){
+		return this.gerenteDeExercicio.getRespostaDoExercicio();
+	}
 }

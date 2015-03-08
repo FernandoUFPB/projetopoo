@@ -1,10 +1,8 @@
 package br.com.ufpb.projetopoo;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -104,14 +102,11 @@ public class GUI extends JFrame{
 					String questao = JOptionPane.showInputDialog(null,"Forneça a pergunda:");
 					String resposta = JOptionPane.showInputDialog(null,"Forneça a resposta:");
 					if(num == 1){
-						e.cadastrarQuestao(numero, questao, TipoQuestao.QUESTAO_V_OU_F);
-						e.cadastrarRespostaDeQuestao(numero, resposta, TipoQuestao.QUESTAO_V_OU_F);
+						e.cadastrarQuestao(numero, questao, resposta, TipoQuestao.QUESTAO_V_OU_F);
 					}else if(num == 2){
-						e.cadastrarQuestao(numero, questao, TipoQuestao.QUESTAO_DISSERTATIVA);
-						e.cadastrarRespostaDeQuestao(numero, resposta, TipoQuestao.QUESTAO_V_OU_F);
+						e.cadastrarQuestao(numero, questao, resposta, TipoQuestao.QUESTAO_DISSERTATIVA);
 					}else{
-						e.cadastrarQuestao(numero, questao, TipoQuestao.QUESTAO_MULTIPLA_ESCOLHA);
-						e.cadastrarRespostaDeQuestao(numero, resposta, TipoQuestao.QUESTAO_V_OU_F);
+						e.cadastrarQuestao(numero, questao, resposta, TipoQuestao.QUESTAO_MULTIPLA_ESCOLHA);
 					}
 				}
 				sistema.cadastrarExercicio(e);				

@@ -2,15 +2,15 @@ package br.com.ufpb.projetopoo;
 
 import java.util.LinkedList;
 import java.util.List;
-public class CadastroDeRespostaDoAluno{
+public class RespostaDoExercicio{
 	private Aluno aluno;
-	private List<Resposta> respostas;
-	public CadastroDeRespostaDoAluno(){
-		this.respostas = new LinkedList<Resposta>();
+	private List<RespostaDeQuestao> respostas;
+	public RespostaDoExercicio(){
+		this.respostas = new LinkedList<RespostaDeQuestao>();
 		this.aluno= null;
 	}
 	public void cadastrarRespostaDeQuestao(int numero, String resposta, TipoQuestao tipo){
-		this.respostas.add(new Resposta(numero, resposta, tipo));
+		this.respostas.add(new RespostaDeQuestao(numero, resposta, tipo));
 	}
 	public void setAluno(Aluno a){
 		this.aluno = a;
@@ -18,7 +18,7 @@ public class CadastroDeRespostaDoAluno{
 	public Pessoa getAluno(){
 		return aluno;
 	}	
-	public List<Resposta> getResposta(){
+	public List<RespostaDeQuestao> getResposta(){
 		return this.respostas;
 	}
 }

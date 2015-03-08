@@ -1,75 +1,38 @@
 package br.com.ufpb.projetopoo;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-
-
 public class GerenteDeExercicio {
 	private List < Exercicio > exercicios;
+	private List<RespostaDoExercicio> respostaDoExercicio;	
 	public GerenteDeExercicio(){
 		this.exercicios = new LinkedList<Exercicio>();
+		this.respostaDoExercicio = new ArrayList<RespostaDoExercicio>();
+	}
+	public List<RespostaDoExercicio> getRespostaDoExercicio(){
+		return this.respostaDoExercicio;
+	}
+	public void cadastrarRespostaDoExercicio(RespostaDoExercicio r){
+		this.respostaDoExercicio.add(r);
 	}
 	public void cadastrarExercicio(Exercicio e){
 		this.exercicios.add(e);
 	}
-	
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public void gravarQuestoesEmArquivo(String nomeArquivo)
-			throws IOException {
-		BufferedWriter gravador = null;
-		try {
-			gravador = new BufferedWriter(new FileWriter(nomeArquivo));
-			for (Exercicio e: this.exercicios){
-				//gravador.write(e.getNomeExercicio()+"\n");
-				
-				for(Questao e2: e.getQuestoes()){
-					
-					gravador.write(e2.getNumQuestao()+"\n");
-					
-					gravador.write(e2.getQuestao()+"\n");
-					//gravador.write(e2.toString()+"\n");
-					gravador.write(e2.getTipo()+"\n");
-				}
-			}
-		} finally {
-			if (gravador!=null){
-				gravador.close();
-			}
-		}		
-	}
-	
-	/*public void carregarDisciplinasDeArquivo(String nomeArquivo)
-			throws QuestaoInexistenteException, IOException {
-		BufferedReader leitor=null;
-		try{
-			leitor = new BufferedReader(new FileReader(nomeArquivo));
-			String nomeExercicio=null;
-			do{
-				nomeExercicio=leitor.readLine();
-				if(nomeExercicio!=null){
-					int num = Integer.parseInt(leitor.readLine());
-					String questao = leitor.readLine();
-					String tipo = leitor.readLine();//===========
-		//			this.cadastrarQuestao(new Questao(num,questao,TipoQuestao tipo));
-				}
-			} while(nomeExercicio!=null);
-			
-			
-		}finally{
-			if(leitor!=null){
-				leitor.close();
+	public void removeExercicio(String nomeExercicio)throws ExercicioInexistenteException{
+		boolean inexistente = false;
+		for(Exercicio e : this.exercicios){
+			if(e.getNomeExercicio().equals(nomeExercicio)){
+				this.exercicios.remove(e);
+				inexistente = true;
+				break;
 			}
 		}
-			
-	}*/
-		
-	
+		if(!inexistente){
+			throw new ExercicioInexistenteException("Exercicio inexistente "+nomeExercicio);
+		}
+	}
 	public Questao pesquisaQuestaoDeExercicio(String nomeExercicio, int numQuestao)
 			throws QuestaoInexistenteException, ExercicioInexistenteException{
 		Exercicio e = this.pesquisarExercicio(nomeExercicio);
@@ -78,7 +41,7 @@ public class GerenteDeExercicio {
 				return y;
 			}
 		}
-		throw new QuestaoInexistenteException("Questao Inexistente"+numQuestao);
+		throw new QuestaoInexistenteException("Questao Inexistente "+numQuestao);
 	}
 	public Exercicio pesquisarExercicio(String nomeExercicio)
 			throws ExercicioInexistenteException {
@@ -114,25 +77,32 @@ public class GerenteDeExercicio {
 		}
 		throw new ExercicioInexistenteException("exercicio não existe");
 	}
-	public boolean corrigirExercicio(String nomeExercicio, String matriculaAluno) 
+	public String corrigirExercicio(String nomeExercicio, String matriculaAluno) 
 			throws ExercicioInexistenteException{
 		Exercicio e = this.pesquisarExercicio(nomeExercicio);
-		int quantQuestaoCorretas = 0;
-	    for(CadastroDeRespostaDoAluno r: e.getCadastroDeRespostaDoAluno()){
+		String pulaLinha = "\n";
+	    for(RespostaDoExercicio r: this.respostaDoExercicio){
 	        if(r.getAluno().getMatricula().equals(matriculaAluno)){
-	    	    for(int i=0; i<e.getResposta().size(); i++){
-				    if(e.getResposta().get(i).getResposta().equals(r.getResposta().get(i).getResposta())){
-				    	quantQuestaoCorretas++;
-				    }
+	        	pulaLinha += "Resposta do(a) aluno(a): "+r.getAluno().toString()+"\n";
+	    	    for(int i=0; i < e.getQuestoes().size(); i++){
+	    	    	if(e.getQuestoes().get(i).getTipo().equals(TipoQuestao.QUESTAO_DISSERTATIVA)){
+	    	    		pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta para essa questão Dissertativa foi:  "+r.getResposta().get(i).getResposta()+", A resposta que o professor deu para essa questão foi: "+e.getQuestoes().get(i).getResposta();
+	    	    	}else if(e.getQuestoes().get(i).getTipo().equals(TipoQuestao.QUESTAO_V_OU_F)){
+	    	    		if(e.getQuestoes().get(i).getResposta().equals(r.getResposta().get(i).getResposta())){
+	    	    			pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta da questão V ou F esta CORRETA";
+	    	    		}else{
+	    	    			pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta da questão V ou F esta INCORRETA"+", A resposta que o professor deu para essa questão foi: "+e.getQuestoes().get(i).getResposta();
+	    	    		}
+	    	    	}else{
+	    	    		if(e.getQuestoes().get(i).getResposta().equals(r.getResposta().get(i).getResposta())){
+	    	    			pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta da questão Multipla Escolha esta CORRETA";
+	    	    		}else{
+	    	    			pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta da questão Multipla Escolha esta INCORRETA"+", A resposta que o professor deu para essa questão foi: "+e.getQuestoes().get(i).getResposta();
+	    	    		}
+	    	    	}			    
 			    }
 	        }
 	    }
-	    if(quantQuestaoCorretas == e.getResposta().size()){
-	    	return true;
-	    }else{
-	    	return false;
-	    }
+	    return pulaLinha;
 	}
-	
-	
 }

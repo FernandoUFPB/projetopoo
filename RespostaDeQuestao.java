@@ -1,15 +1,17 @@
 package br.com.ufpb.projetopoo;
 
-public class Resposta {
+public class RespostaDeQuestao {
 	private int numResposta;
 	private String resposta;
 	private TipoQuestao tipo;
-	public Resposta(int numQuestao, String resposta, TipoQuestao tipo){
+	public RespostaDeQuestao(int numQuestao, String resposta, TipoQuestao tipo){
 		this.numResposta = numQuestao;
 		this.resposta = resposta;
 		this.tipo = tipo;
 	}
-	
+	public RespostaDeQuestao(){
+		
+	}
 	public TipoQuestao getTipo(){
 		return tipo;
 	}
@@ -27,5 +29,8 @@ public class Resposta {
 	}
 	public void setResposta(String resposta){
 		this.resposta = resposta;
+	}
+	public String toString(){
+		return this.numResposta+" Resposta: "+this.resposta;
 	}
 }

@@ -1,20 +1,13 @@
 package br.com.ufpb.projetopoo;
 
 public class Professor extends Pessoa{
-
-	public Professor(String nome, String matricula){
-		super(nome, matricula);
-	}
-	public Professor(String texto, String emailRemetente, String emailDestinatario){
-		super(texto, emailRemetente, emailDestinatario);
-	}
 	public Professor(){
 		super("sem nome", "sem matricula");
 	}
-	public String getDescricao(){
-		return "Professor";
+	public Professor(String nome, String matricula){
+		super(nome, matricula);
 	}
-	public String getFeedbackAExibir() {
-		return "Mensagem de:"+super.getEmailRemetente()+" para "+getEmailDestinatario()+" Texto "+super.getTexto();
+	public String toString(){
+		return "Nome: "+super.getNome()+", Matricula: "+super.getMatricula();
 	}
 }
