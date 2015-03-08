@@ -1,59 +1,39 @@
 package br.com.ufpb.projetopoo;
 
-import java.io.IOException;
-
 public class Tes {
 
-	public static void main(String[] args) throws ExercicioInexistenteException {
-		GerenteDeExercicio sistema = new GerenteDeExercicio();
-		GerenteDeFeedback feedback = new GerenteDeFeedback();
-		Aluno a = new Aluno("fernando", "99");
-		Professor p = new Professor("Diogo", "03");
-		Exercicio exer = new Exercicio();
+	public static void main(String [] args) throws ExercicioInexistenteException {
 		
+		ExercicioFacade sistema = new ExercicioFacade();
 		
-		exer.setNomeExercicio("poo");
-		exer.cadastrarQuestao(1, "Libras é uma lingua de sinais V ou F?", TipoQuestao.QUESTAO_V_OU_F);
-		exer.cadastrarQuestao(2, "Alta coesão e baixo acoplamento é um bom design para um projeto V ou F?", TipoQuestao.QUESTAO_V_OU_F);
-		exer.cadastrarRespostaDeQuestao(1, "v", TipoQuestao.QUESTAO_V_OU_F);
-		exer.cadastrarRespostaDeQuestao(2, "v", TipoQuestao.QUESTAO_V_OU_F);
+		Exercicio e = new Exercicio();
+		Professor p = new Professor("Ayla", "133");
+		e.setNomeExercicio("poo");
+		e.setProfessor(p);
+		e.cadastrarQuestao(1, "Libras é uma lingua de sinais ?","sim", TipoQuestao.QUESTAO_DISSERTATIVA);
+		e.cadastrarQuestao(2, "Alta coesão e baixo acoplamento é um bom design para um projeto V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
+		e.cadastrarQuestao(3, "Quais são os tipo primitivos de java \na) int \nb) String \nc) Integer", "a", TipoQuestao.QUESTAO_MULTIPLA_ESCOLHA);
+		e.cadastrarQuestao(4, "O conjunto vazio esta contido em todos os conjuntos V ou F?","v", TipoQuestao.QUESTAO_V_OU_F);
 		
-		exer.cadastrarQuestao(3, "Quais os tipos primitivos na liguagem de programação Java?", TipoQuestao.QUESTAO_DISSERTATIVA);
-		exer.cadastrarRespostaDeQuestao(3, "byte, short, int, long, float, double, char e boolean", TipoQuestao.QUESTAO_DISSERTATIVA);
+		sistema.cadastrarExercicio(e);
 		
-		feedback.CadastarFeedback(exer.getNomeExercicio(), p.getMatricula(),"A resposta deverá ter no mínimo esses cinco tipos: int, double, boolean, short e long");
-		//Na linha acima será gravado um feedback do professor para o aluno.
-		
-		feedback.CadastarFeedback(exer.getNomeExercicio(), a.getMatricula(), "Professor, eu só consegui lembrar desses três tipos: boolean, short e long");
-		
-		CadastroDeRespostaDoAluno respostaAluno = new CadastroDeRespostaDoAluno();
-		respostaAluno.setAluno(a);
-		respostaAluno.cadastrarRespostaDeQuestao(1, "v", TipoQuestao.QUESTAO_V_OU_F);
-		respostaAluno.cadastrarRespostaDeQuestao(2, "v", TipoQuestao.QUESTAO_V_OU_F);
-		
-		exer.adicionaCadastroDeRespostaDoAluno(respostaAluno);
-		sistema.cadastrarExercicio(exer);
-		
-		
-		try {
-			sistema.gravarQuestoesEmArquivo("Questoes.txt");
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		Exercicio exercicio = sistema.pesquisarExercicio("poo");
+		System.out.println("exercico do(a) professor(a) :"+exercicio.getProfessor().getNome());
+		for(Questao q : exercicio.getQuestoes()){
+			System.out.println(q.toString()+"\n");
 		}
 		
-		
-		
-		try {
-			System.out.println("Feedback do professor: "+feedback.PesquisaFeedback(exer.getNomeExercicio(), p.getMatricula()));
-			System.out.println("Feedback do aluno: "+feedback.PesquisaFeedback(exer.getNomeExercicio(), a.getMatricula()));
-		} catch (FeedbackInexistenteException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
-		
+		RespostaDoExercicio r = new RespostaDoExercicio();
+		Aluno a = new Aluno("fernando", "123");
+		r.setAluno(a);
+		r.cadastrarRespostaDeQuestao(1, "nao", TipoQuestao.QUESTAO_DISSERTATIVA);
+		r.cadastrarRespostaDeQuestao(2, "v", TipoQuestao.QUESTAO_V_OU_F);
+		r.cadastrarRespostaDeQuestao(3, "a", TipoQuestao.QUESTAO_MULTIPLA_ESCOLHA);
+		r.cadastrarRespostaDeQuestao(4, "f", TipoQuestao.QUESTAO_V_OU_F);
 	
-		//boolean cc = sistema.corrigirExercicio("poo", "99");
-		//System.out.println(cc);	
+		sistema.cadastrarRespostaDoExercicio(r);
+	
+		String resp = sistema.corrigirExercicio("poo", "123");
+		System.out.println(resp);
 	}
 }

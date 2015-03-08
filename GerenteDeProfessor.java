@@ -16,7 +16,6 @@ public class GerenteDeProfessor {
 		}
 		this.professores.add(new Professor(nome, matricula));
 	}
-	
 	public void removeProfessor(String matricula)
 			throws ProfessorInexistenteException {
 		boolean inexistente = false;

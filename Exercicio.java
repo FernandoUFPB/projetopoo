@@ -3,15 +3,19 @@ package br.com.ufpb.projetopoo;
 import java.util.ArrayList;
 import java.util.List;
 public class Exercicio {
+	private Professor professor;
 	private String nomeExercicio;
 	private List<Questao> questoes;
-	private List<Resposta> resposta;
-	private List<CadastroDeRespostaDoAluno> cadastroDeRespostaDoAluno;
 	public Exercicio(){
 		this.questoes = new ArrayList<Questao>();
-		this.resposta = new ArrayList<Resposta>();
 		this.nomeExercicio = "exercicio indefinido";
-		this.cadastroDeRespostaDoAluno = new ArrayList<CadastroDeRespostaDoAluno>();
+		this.professor = null;
+	}
+	public void setProfessor(Professor p){
+		this.professor = p;
+	}
+	public Professor getProfessor(){
+		return professor;
 	}
 	public void setNomeExercicio(String nome){
 		this.nomeExercicio = nome;
@@ -22,23 +26,7 @@ public class Exercicio {
 	public List<Questao> getQuestoes(){
 		return this.questoes;
 	}
-	public List<Resposta> getResposta(){
-		return this.resposta;
+	public void cadastrarQuestao(int numero, String questao, String resposta, TipoQuestao tipo){
+		this.questoes.add(new Questao(numero, questao, resposta, tipo));
 	}
-	public void cadastrarQuestao(int numero, String questao, TipoQuestao tipo){
-		this.questoes.add(new Questao(numero, questao, tipo));
-	}
-	public void cadastrarRespostaDeQuestao(int numero, String resposta, TipoQuestao tipo){
-		this.resposta.add(new Resposta(numero, resposta, tipo));
-	} 
-	
-	public List<CadastroDeRespostaDoAluno> getCadastroDeRespostaDoAluno(){
-		return this.cadastroDeRespostaDoAluno;
-	}
-	public void adicionaCadastroDeRespostaDoAluno(CadastroDeRespostaDoAluno r){
-		this.cadastroDeRespostaDoAluno.add(r);
-	}
-	
-	
-
 }
