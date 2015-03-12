@@ -1,23 +1,16 @@
 package br.com.ufpb.projetopoo;
 
 import static org.junit.Assert.*;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
+
 public class ExercicioFacadeTest {
 	private ExercicioFacade exercicio;
-	
-	private ExercicioFacade professores;
-	private List<RespostaDeQuestao> respostas;
 	@Before
 	public void setUp() throws Exception {
 		this.exercicio = new ExercicioFacade();
-		this.professores = new ExercicioFacade();
-		this.respostas = new ArrayList<RespostaDeQuestao>();
 	}
 	@Test
 	public void testCadastrarExercicio(){
@@ -148,81 +141,23 @@ public class ExercicioFacadeTest {
 			fail("não deve lançar essa exceção");
 		}
 	}
-	@Test
-	public void testSortearExercício(){
-		Exercicio e = new Exercicio();
-		Professor p = new Professor("ayla","123");
-		e.setNomeExercicio("lp");
-		e.setProfessor(p);
-		e.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
-		exercicio.cadastrarExercicio(e);
-		
-		Exercicio e2 = new Exercicio();
-		Professor p2 = new Professor("ana","111");
-		e2.setNomeExercicio("ld");
-		e2.setProfessor(p2);
-		e2.cadastrarQuestao(1, "prolog é uma linguagem declarativa V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
-		exercicio.cadastrarExercicio(e2);
-		
-		Exercicio exer = exercicio.sortearExercício();
-		if(exer.getProfessor().getNome().equals("ayla")){
-			assertEquals("lp", exer.getNomeExercicio());
-		}else{
-			assertEquals("ld",exer.getNomeExercicio());
-		}
-	}
-	@Test
-	public void testPesquisarQuestaoDeExercicio(){
-		Exercicio e3 = new Exercicio();
-		
-		e3.cadastrarQuestao(1, "Libras é uma linguagem de sinais?", "Sim", TipoQuestao.QUESTAO_DISSERTATIVA);
-		e3.cadastrarQuestao(2, "html é uma linguagem de programação?", "F", TipoQuestao.QUESTAO_V_OU_F);
-		exercicio.cadastrarExercicio(e3);
-		assertEquals(1,e3.getQuestoes().get(0).getNumQuestao());
-		
-		
-	}
-	@Test
-	public void testPesquisaProfessorPelaMatricula(){
-		try {
-			this.professores.cadastrarProfessor("Ayla", "777");
-			this.professores.cadastrarProfessor("Diogo", "454");
-		} catch (ProfessorJaExisteException e1) {
-			fail("Erro ao cadastrar professor");
-		}
-		
-		try {
-			assertEquals("Ayla",this.professores.pesquisaProfessorPelaMatricula("777").getNome());
-		} catch (ProfessorInexistenteException e) {
-			fail("Erro ao pesquisar o professor");
-		}
-		
-		
-		
-	}
-	@Test
-	public void testObterListaDeProfessores(){
-		try {
-			this.professores.cadastrarProfessor("Diogo", "111");
-			this.professores.cadastrarProfessor("Fernando", "000");
-			this.professores.cadastrarProfessor("Ana", "222");
-		} catch (ProfessorJaExisteException e) {
-			fail("O professor já existe");
-		}
-		
-		assertEquals(3,this.professores.obterListaDeProfessores().size());
-	}
-	@Test
-	public void testCadastraEGetResposta(){
-		RespostaDoExercicio r1 = new RespostaDoExercicio();
-		r1.cadastrarRespostaDeQuestao(1, "V", TipoQuestao.QUESTAO_V_OU_F);
-		RespostaDoExercicio r2 = new RespostaDoExercicio();
-		r2.cadastrarRespostaDeQuestao(2, "Sim", TipoQuestao.QUESTAO_DISSERTATIVA);
-		this.exercicio.cadastrarRespostaDoExercicio(r1);
-		this.exercicio.cadastrarRespostaDoExercicio(r2);
-		assertEquals(2,this.exercicio.getRespostaDoExercicio().size());
-		assertEquals("V",this.exercicio.getRespostaDoExercicio().get(0).getResposta().get(0).getResposta());
-		
-	}
-	
+//	@Test
+//	public void testSortearExercício(){
+//		Exercicio e = new Exercicio();
+//		Professor p = new Professor("ayla","123");
+//		e.setNomeExercicio("lp");
+//		e.setProfessor(p);
+//		e.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
+//		exercicio.cadastrarExercicio(e);
+//		
+//		Exercicio e2 = new Exercicio();
+//		Professor p2 = new Professor("ana","111");
+//		e2.setNomeExercicio("ld");
+//		e2.setProfessor(p2);
+//		e2.cadastrarQuestao(1, "prolog é uma linguagem declarativa V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
+//		exercicio.cadastrarExercicio(e2);
+//		
+//		Exercicio exer = exercicio.sortearExercício();
+//		assertEquals("lp", exer.getNomeExercicio());
+//	}	
 }

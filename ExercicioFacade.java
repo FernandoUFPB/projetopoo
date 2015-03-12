@@ -2,6 +2,7 @@ package br.com.ufpb.projetopoo;
 
 import java.util.Collection;
 import java.util.List;
+
 public class ExercicioFacade {
 	private GerenteDeAluno gerenteDeAluno;
 	private GerenteDeExercicio gerenteDeExercicio;
@@ -10,6 +11,7 @@ public class ExercicioFacade {
 		this.gerenteDeExercicio = new GerenteDeExercicio();
 		this.gerenteDeAluno = new GerenteDeAluno();
 		this.gerenteDeProfessor = new GerenteDeProfessor();
+
 	}
 	public void cadastrarExercicio(Exercicio e){
 		this.gerenteDeExercicio.cadastrarExercicio(e);
@@ -35,8 +37,8 @@ public class ExercicioFacade {
 			throws QuestaoInexistenteException, ExercicioInexistenteException{
 		return this.gerenteDeExercicio.pesquisaQuestaoDeExercicio(nomeExercicio, numQuestao);
 	}
-	public String corrigirExercicio(String nomeExercicio, String matriculaAluno) throws ExercicioInexistenteException {
-		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio, matriculaAluno);
+	public List<Integer> corrigirExercicio(String nomeExercicio) throws ExercicioInexistenteException {
+		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio);
 	}
 	public void cadastrarProfessor(String nome, String matricula)
 			throws ProfessorJaExisteException {
@@ -72,5 +74,11 @@ public class ExercicioFacade {
 	}
 	public List<RespostaDoExercicio> getRespostaDoExercicio(){
 		return this.gerenteDeExercicio.getRespostaDoExercicio();
+	}
+	public String enviarFeedbackParaAlunos(String nome) throws ExercicioInexistenteException {
+		return this.gerenteDeExercicio.enviarFeedbackParaAlunos(nome);	
+	}
+	public void enviarFeedbackParaProfessor() {
+		this.gerenteDeExercicio.enviarFeedbackParaProfessor();	
 	}
 }
