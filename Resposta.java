@@ -1,15 +1,15 @@
 package br.com.ufpb.projetopoo;
 
-public class RespostaDeQuestao{
+public class Resposta {
 	private int numResposta;
 	private String resposta;
 	private TipoQuestao tipo;
-	public RespostaDeQuestao(int numQuestao, String resposta, TipoQuestao tipo){
+	public Resposta(int numQuestao, String resposta, TipoQuestao tipo){
 		this.numResposta = numQuestao;
 		this.resposta = resposta;
 		this.tipo = tipo;
 	}
-	public RespostaDeQuestao (){
+	public Resposta(){
 		
 	}
 	public TipoQuestao getTipo(){

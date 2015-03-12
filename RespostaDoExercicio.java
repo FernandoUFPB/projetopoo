@@ -6,7 +6,7 @@ public class RespostaDoExercicio{
 	private Aluno aluno;
 	private List<RespostaDeQuestao> respostas;
 	public RespostaDoExercicio(){
-		this.respostas = new LinkedList<RespostaDeQuestao>();
+		this.respostas = new LinkedList<RespostaDeQuestao >();
 		this.aluno= null;
 	}
 	public void cadastrarRespostaDeQuestao(int numero, String resposta, TipoQuestao tipo){
@@ -18,7 +18,7 @@ public class RespostaDoExercicio{
 	public Pessoa getAluno(){
 		return aluno;
 	}	
-	public List<RespostaDeQuestao> getResposta(){
+	public List<RespostaDeQuestao > getResposta(){
 		return this.respostas;
 	}
 }
