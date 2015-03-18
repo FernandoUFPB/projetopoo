@@ -9,8 +9,11 @@ public class RespostaDeQuestao{
 		this.resposta = resposta;
 		this.tipo = tipo;
 	}
-	public RespostaDeQuestao (){
-		
+	public String getResposta(){
+		return resposta;
+	}
+	public void setResposta(String resposta){
+		this.resposta = resposta;
 	}
 	public TipoQuestao getTipo(){
 		return tipo;
@@ -23,14 +26,5 @@ public class RespostaDeQuestao{
 	}
 	public void setNumResposta(int num){
 		this.numResposta = num;
-	}
-	public String getResposta(){
-		return resposta;
-	}
-	public void setResposta(String resposta){
-		this.resposta = resposta;
-	}
-	public String toString(){
-		return this.numResposta+" Resposta: "+this.resposta;
 	}
 }

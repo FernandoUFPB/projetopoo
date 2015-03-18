@@ -1,11 +1,11 @@
 package br.com.ufpb.projetopoo;
 
 import static org.junit.Assert.*;
+
 import java.util.Collection;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-
 public class ExercicioFacadeTest {
 	private ExercicioFacade exercicio;
 	@Before
@@ -14,17 +14,12 @@ public class ExercicioFacadeTest {
 	}
 	@Test
 	public void testCadastrarExercicio(){
-		Exercicio e = new Exercicio();
-		Professor p = new Professor("ayla","123");
-		e.setNomeExercicio("poo");
-		e.setProfessor(p);
+		Exercicio e = new Exercicio("poo");		
 		e.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
 		exercicio.cadastrarExercicio(e);
 		try {
 			Exercicio e1 = exercicio.pesquisarExercicio("poo");
 			assertEquals("poo", e1.getNomeExercicio());
-			Professor prof = e1.getProfessor();
-			assertEquals("ayla", prof.getNome());
 			List<Questao> q = e1.getQuestoes();
 			int quantQuestao = q.size();
 			assertTrue(1 == quantQuestao);
@@ -35,11 +30,8 @@ public class ExercicioFacadeTest {
 		}
 	}
 	@Test
-	public void testRemoveExercicio(){
-		Exercicio e = new Exercicio();
-		Professor p = new Professor("ayla","333");
-		e.setNomeExercicio("lp");
-		e.setProfessor(p);
+	public void testRemoveExercicio() throws ExercicioInexistenteException{
+		Exercicio e = new Exercicio("lp");	
 		e.cadastrarQuestao(1, "linguagem de programação é orientada a objetos V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
 		exercicio.cadastrarExercicio(e);
 		List<Exercicio> l = exercicio.listarExercíciosCadastrados();
@@ -51,8 +43,7 @@ public class ExercicioFacadeTest {
 			assertTrue(0 == quantExercicio2);
 		} catch (ExercicioInexistenteException e1) {
 			fail("não deve lançar essa exceção");
-		}
-		
+		}		
 	}
 	@Test
 	public void testCadastrarProfessor() {
@@ -111,10 +102,7 @@ public class ExercicioFacadeTest {
 	}
 	@Test
 	public void testPesquisarExercicio(){
-		Exercicio e = new Exercicio();
-		Professor p = new Professor("ayla","123");
-		e.setNomeExercicio("poo");
-		e.setProfessor(p);
+		Exercicio e = new Exercicio("poo");
 		e.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
 		exercicio.cadastrarExercicio(e);
 		try {
@@ -126,10 +114,7 @@ public class ExercicioFacadeTest {
 	}
 	@Test
 	public void testAtualizarExercício(){
-		Exercicio e = new Exercicio();
-		Professor p = new Professor("ayla","123");
-		e.setNomeExercicio("lp");
-		e.setProfessor(p);
+		Exercicio e = new Exercicio("lp");
 		e.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
 		exercicio.cadastrarExercicio(e);
 		try {
@@ -141,23 +126,37 @@ public class ExercicioFacadeTest {
 			fail("não deve lançar essa exceção");
 		}
 	}
-//	@Test
-//	public void testSortearExercício(){
-//		Exercicio e = new Exercicio();
-//		Professor p = new Professor("ayla","123");
-//		e.setNomeExercicio("lp");
-//		e.setProfessor(p);
-//		e.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
-//		exercicio.cadastrarExercicio(e);
-//		
-//		Exercicio e2 = new Exercicio();
-//		Professor p2 = new Professor("ana","111");
-//		e2.setNomeExercicio("ld");
-//		e2.setProfessor(p2);
-//		e2.cadastrarQuestao(1, "prolog é uma linguagem declarativa V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
-//		exercicio.cadastrarExercicio(e2);
-//		
-//		Exercicio exer = exercicio.sortearExercício();
-//		assertEquals("lp", exer.getNomeExercicio());
-//	}	
+	@Test
+	public void testSortearExercício(){
+		Exercicio e2 = new Exercicio("poo");
+		e2.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
+		exercicio.cadastrarExercicio(e2);
+		
+		Exercicio exer = exercicio.sortearExercício();
+		assertEquals("poo", exer.getNomeExercicio());
+	}
+	@Test
+	public void testCorregirExercicio(){
+		Exercicio e = new Exercicio("lp");
+		e.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
+		e.cadastrarQuestao(2, "prolog é uma linguagem de programação v ou f?", "v", TipoQuestao.QUESTAO_V_OU_F);
+		exercicio.cadastrarExercicio(e);
+		
+		RespostaDoExercicio r = new RespostaDoExercicio();
+		Aluno aluno = new Aluno("fernando", "123");
+		r.setAluno(aluno);
+		r.setExercicio(e);
+		r.cadastrarRespostaQuestao(1, "v", TipoQuestao.QUESTAO_V_OU_F);
+		r.cadastrarRespostaQuestao(2, "v", TipoQuestao.QUESTAO_V_OU_F);
+		
+		exercicio.cadastrarRespostaDoExercicio(r);
+		
+		try {
+			int quantAcertos = exercicio.corrigirExercicio("lp", "123");
+			assertEquals(2, quantAcertos);
+		} catch (ExercicioInexistenteException e1) {
+			fail("Não deve lançar essa exceção");
+		}		
+	}
+	
 }
