@@ -11,7 +11,7 @@ public class GerenteDeAluno {
 	public void cadastraAluno(String nome, String matricula)
 			throws AlunoJaExisteException {
 		if(this.alunos.containsKey(matricula)){
-			throw new AlunoJaExisteException("Aluno Ja Existe "+matricula);
+			throw new AlunoJaExisteException("Já Existe aluno com essa matricula: "+matricula);
 		}else{
 			this.alunos.put(matricula,new Aluno(nome,matricula));
 		}
@@ -19,14 +19,14 @@ public class GerenteDeAluno {
 	public Aluno pesquisaAlunoPelaMatricula(String matricula)
 			throws AlunoInexistenteException {
 		if(!this.alunos.containsKey(matricula)){
-			throw new AlunoInexistenteException("Aluno Inexistente "+matricula);
+			throw new AlunoInexistenteException("Não existe aluno com essa matricula: "+matricula);
 		}else{
 			return this.alunos.get(matricula);
 		}
 	}
 	public void removeAluno(String matricula) throws AlunoInexistenteException {
 		if(!this.alunos.containsKey(matricula)){
-			throw new AlunoInexistenteException("Aluno Inexistente "+matricula);
+			throw new AlunoInexistenteException("Não existe aluno com essa matricula: "+matricula);
 		}else{
 			this.alunos.remove(matricula);
 		}

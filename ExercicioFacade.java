@@ -2,18 +2,16 @@ package br.com.ufpb.projetopoo;
 
 import java.util.Collection;
 import java.util.List;
-
 public class ExercicioFacade {
 	private GerenteDeAluno gerenteDeAluno;
 	private GerenteDeExercicio gerenteDeExercicio;
 	private GerenteDeProfessor gerenteDeProfessor;
-	public ExercicioFacade(){
-		this.gerenteDeExercicio = new GerenteDeExercicio();
+	public ExercicioFacade(){		
 		this.gerenteDeAluno = new GerenteDeAluno();
+		this.gerenteDeExercicio = new GerenteDeExercicio();
 		this.gerenteDeProfessor = new GerenteDeProfessor();
-
 	}
-	public void cadastrarExercicio(Exercicio e){
+	public void cadastrarExercicio(Exercicio e) {
 		this.gerenteDeExercicio.cadastrarExercicio(e);
 	}
 	public void removeExercico(String nomeExercicio) throws ExercicioInexistenteException{
@@ -29,16 +27,13 @@ public class ExercicioFacade {
 	public Exercicio sortearExercício() {
 		return this.gerenteDeExercicio.sortearExercício();
 	}
-	public void atualizarExercício(String nomeExercicio, int numQuestao, String questao) 
+	public void atualizarExercício(String nomeExercicio, int numQuestao, String novaQuestao) 
 			throws ExercicioInexistenteException {
-		this.gerenteDeExercicio.atualizarExercicio(nomeExercicio, numQuestao, questao);
+		this.gerenteDeExercicio.atualizarExercicio(nomeExercicio, numQuestao, novaQuestao);
 	}
 	public Questao pesquisaQuestaoDeExercicio(String nomeExercicio, int numQuestao)
 			throws QuestaoInexistenteException, ExercicioInexistenteException{
 		return this.gerenteDeExercicio.pesquisaQuestaoDeExercicio(nomeExercicio, numQuestao);
-	}
-	public List<Integer> corrigirExercicio(String nomeExercicio) throws ExercicioInexistenteException {
-		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio);
 	}
 	public void cadastrarProfessor(String nome, String matricula)
 			throws ProfessorJaExisteException {
@@ -72,13 +67,13 @@ public class ExercicioFacade {
 	public void cadastrarRespostaDoExercicio(RespostaDoExercicio r){
 		this.gerenteDeExercicio.cadastrarRespostaDoExercicio(r);
 	}
-	public List<RespostaDoExercicio> getRespostaDoExercicio(){
-		return this.gerenteDeExercicio.getRespostaDoExercicio();
+	public String enviarFeedbackParaAlunos(String nome,String matriculaAluno) throws ExercicioInexistenteException {
+		return this.gerenteDeExercicio.enviarFeedbackParaAlunos(nome, matriculaAluno);	
 	}
-	public String enviarFeedbackParaAlunos(String nome) throws ExercicioInexistenteException {
-		return this.gerenteDeExercicio.enviarFeedbackParaAlunos(nome);	
+	public String enviarFeedbackParaProfessor(String nomeExercicio)throws ExercicioInexistenteException {
+			return this.gerenteDeExercicio.enviarFeedbackParaProfessor(nomeExercicio);
 	}
-	public void enviarFeedbackParaProfessor() {
-		this.gerenteDeExercicio.enviarFeedbackParaProfessor();	
+	public int corrigirExercicio(String nomeExercicio, String matriculaAluno) throws ExercicioInexistenteException {
+		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio, matriculaAluno);
 	}
 }

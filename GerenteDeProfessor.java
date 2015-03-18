@@ -11,7 +11,7 @@ public class GerenteDeProfessor {
 			throws ProfessorJaExisteException {
 		for(Professor i: professores){
 			if(i.getMatricula().equals(matricula)){
-				throw new ProfessorJaExisteException("Professor Ja Existe");
+				throw new ProfessorJaExisteException("Já existe professor com essa matricula: "+matricula);
 			}
 		}
 		this.professores.add(new Professor(nome, matricula));
@@ -27,7 +27,7 @@ public class GerenteDeProfessor {
 			}
 		}
 		if(!inexistente){
-			throw new ProfessorInexistenteException("erro Professor Inexistente");
+			throw new ProfessorInexistenteException("Não existe professor com essa matricula: "+matricula);
 		}
 	}
 	public Professor pesquisaProfessorPelaMatricula(String matricula)
@@ -37,7 +37,7 @@ public class GerenteDeProfessor {
 				return i;
 			}
 		}
-		throw new ProfessorInexistenteException("Professor Inexistente");
+		throw new ProfessorInexistenteException("Não existe professor com essa matricula: "+matricula);
 	}
 	public List<Professor> obterListaDeProfessores() {
 		return professores;
