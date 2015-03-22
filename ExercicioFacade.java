@@ -1,15 +1,33 @@
 package br.com.ufpb.projetopoo;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 public class ExercicioFacade {
-	private GerenteDeAluno gerenteDeAluno;
+	private GerenteDeAluno gerenteDeAluno; 
 	private GerenteDeExercicio gerenteDeExercicio;
 	private GerenteDeProfessor gerenteDeProfessor;
-	public ExercicioFacade(){		
-		this.gerenteDeAluno = new GerenteDeAluno();
-		this.gerenteDeExercicio = new GerenteDeExercicio();
-		this.gerenteDeProfessor = new GerenteDeProfessor();
+	GravadorDeFacade gravador = new GravadorDeFacade();
+	public ExercicioFacade(){
+		try{
+			this.gerenteDeExercicio = gravador.leGerenteDeExercicio();
+			this.gerenteDeAluno = gravador.leGerenteDeAluno();
+			this.gerenteDeProfessor = gravador.leGerenteDeProfessor();
+		}catch(IOException e){
+			System.out.println(e.getMessage());
+			this.gerenteDeExercicio = new GerenteDeExercicio();
+			this.gerenteDeAluno = new GerenteDeAluno();
+			this.gerenteDeProfessor = new GerenteDeProfessor();
+		}
+	}
+	public void sairDoSistema(){
+		try{
+			this.gravador.gravaGerenteDeExercicio(this.gerenteDeExercicio);
+			this.gravador.gravaGerenteDeAluno(this.gerenteDeAluno);
+			this.gravador.gravaGerenteDeProfessor(this.gerenteDeProfessor);
+		}catch(IOException e){
+			System.out.println(e.getMessage());
+		}
 	}
 	public void cadastrarExercicio(Exercicio e) {
 		this.gerenteDeExercicio.cadastrarExercicio(e);
@@ -27,9 +45,9 @@ public class ExercicioFacade {
 	public Exercicio sortearExercício() {
 		return this.gerenteDeExercicio.sortearExercício();
 	}
-	public void atualizarExercício(String nomeExercicio, int numQuestao, String novaQuestao) 
+	public void atualizarExercício(String nomeExercicio, int numQuestao, String questao) 
 			throws ExercicioInexistenteException {
-		this.gerenteDeExercicio.atualizarExercicio(nomeExercicio, numQuestao, novaQuestao);
+		this.gerenteDeExercicio.atualizarExercicio(nomeExercicio, numQuestao, questao);
 	}
 	public Questao pesquisaQuestaoDeExercicio(String nomeExercicio, int numQuestao)
 			throws QuestaoInexistenteException, ExercicioInexistenteException{
@@ -73,7 +91,7 @@ public class ExercicioFacade {
 	public String enviarFeedbackParaProfessor(String nomeExercicio)throws ExercicioInexistenteException {
 			return this.gerenteDeExercicio.enviarFeedbackParaProfessor(nomeExercicio);
 	}
-	public int corrigirExercicio(String nomeExercicio, String matriculaAluno) throws ExercicioInexistenteException {
-		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio, matriculaAluno);
+	public int corrigirExercicio(String nomeExercicio, String matricula) throws ExercicioInexistenteException {
+		return this.gerenteDeExercicio.corrigirExercicio(nomeExercicio, matricula);
 	}
 }

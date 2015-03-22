@@ -1,7 +1,8 @@
 package br.com.ufpb.projetopoo;
 
+import java.io.Serializable;
 import java.util.List;
-public class Questao {
+public class Questao implements Serializable{
 	private int numQuestao;
 	private String questao;
 	private List<String> alternativas;

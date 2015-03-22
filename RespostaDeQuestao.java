@@ -1,6 +1,8 @@
 package br.com.ufpb.projetopoo;
 
-public class RespostaDeQuestao{
+import java.io.Serializable;
+
+public class RespostaDeQuestao implements Serializable{
 	private int numResposta;
 	private String resposta;
 	private TipoQuestao tipo;

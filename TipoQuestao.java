@@ -1,5 +1,7 @@
 package br.com.ufpb.projetopoo;
 
-public enum TipoQuestao {
+import java.io.Serializable;
+
+public enum TipoQuestao implements Serializable{
 	QUESTAO_DISSERTATIVA, QUESTAO_V_OU_F, QUESTAO_MULTIPLA_ESCOLHA 
 }
