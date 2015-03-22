@@ -1,15 +1,11 @@
 package br.com.ufpb.projetopoo;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-public class GerenteDeExercicio {
+public class GerenteDeExercicio implements Serializable{
 	private List <Exercicio> exercicios;
 	private List <RespostaDoExercicio> respostaDoExercicio;	
 	public GerenteDeExercicio(){
@@ -136,10 +132,8 @@ public class GerenteDeExercicio {
 			    	}
 			    }
 		    }
-		}
-		
-		return "\n"+
-		quantDeAlunosRespostaVouFCorreta+" Alunos responderam as questão V ou F Corretas\n"+
+		}		
+		return "\n"+quantDeAlunosRespostaVouFCorreta+" Alunos responderam as questão V ou F Corretas\n"+
 		quantDeAlunosRespostaVouFIncorreta+" Alunos responderam as questão V ou F Incorretas\n"+
 		quantDeAlunosRespostaMultiplaEscolhaCorreta+" Alunos responderam as questão Multipla Escolha Corretas\n"+
 		quantDeAlunosRespostaMultiplaEscolhaInCorreta+" Alunos responderam as questão Multipla Ecolha Incorretas\n"+
@@ -163,34 +157,5 @@ public class GerenteDeExercicio {
 	}
 	public void cadastrarRespostaDoExercicio(RespostaDoExercicio r){
 		this.respostaDoExercicio.add(r);
-	}
-	
-	
-	public void gravarExerciciosEmArquivo(String nomeArquivo) throws IOException {
-		BufferedWriter gravador = null;
-		try {
-			gravador = new BufferedWriter(new FileWriter(nomeArquivo));
-			for (Exercicio exercicio: this.exercicios){
-				gravador.write(exercicio.getNomeExercicio()+"\n");
-				gravador.write(exercicio.getQuestoes()+"\n");
-				
-			}
-		} finally {
-			if (gravador!=null){
-				gravador.close();
-			}
-		}		
-	}
-	
-	public void lerExerciciosEmArquivo(String nomeArquivo) throws IOException {
-		BufferedReader leitor = null;
-		try {
-			leitor = new BufferedReader(new FileReader(nomeArquivo));
-			leitor.readLine();
-		} finally {
-			if (leitor!=null){
-				leitor.close();
-			}
-		}		
 	}
 }

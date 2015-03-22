@@ -1,9 +1,10 @@
 package br.com.ufpb.projetopoo;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-public class GerenteDeAluno {
+public class GerenteDeAluno implements Serializable{
 	private Map<String, Aluno> alunos;
 	public  GerenteDeAluno(){
 		this.alunos = new HashMap<String, Aluno>();

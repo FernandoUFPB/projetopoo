@@ -1,7 +1,6 @@
 package br.com.ufpb.projetopoo;
 
 import static org.junit.Assert.*;
-
 import java.util.Collection;
 import java.util.List;
 import org.junit.Before;
@@ -30,7 +29,7 @@ public class ExercicioFacadeTest {
 		}
 	}
 	@Test
-	public void testRemoveExercicio() throws ExercicioInexistenteException{
+	public void testRemoveExercicio(){
 		Exercicio e = new Exercicio("lp");	
 		e.cadastrarQuestao(1, "linguagem de programação é orientada a objetos V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
 		exercicio.cadastrarExercicio(e);
@@ -128,35 +127,12 @@ public class ExercicioFacadeTest {
 	}
 	@Test
 	public void testSortearExercício(){
-		Exercicio e2 = new Exercicio("poo");
-		e2.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
-		exercicio.cadastrarExercicio(e2);
+		Exercicio e = new Exercicio("poo");
+		e.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
+		exercicio.cadastrarExercicio(e);
 		
 		Exercicio exer = exercicio.sortearExercício();
 		assertEquals("poo", exer.getNomeExercicio());
-	}
-	@Test
-	public void testCorregirExercicio(){
-		Exercicio e = new Exercicio("lp");
-		e.cadastrarQuestao(1, "java é uma linguagem de alto nivel V ou F?", "v", TipoQuestao.QUESTAO_V_OU_F);
-		e.cadastrarQuestao(2, "prolog é uma linguagem de programação v ou f?", "v", TipoQuestao.QUESTAO_V_OU_F);
-		exercicio.cadastrarExercicio(e);
-		
-		RespostaDoExercicio r = new RespostaDoExercicio();
-		Aluno aluno = new Aluno("fernando", "123");
-		r.setAluno(aluno);
-		r.setExercicio(e);
-		r.cadastrarRespostaQuestao(1, "v", TipoQuestao.QUESTAO_V_OU_F);
-		r.cadastrarRespostaQuestao(2, "v", TipoQuestao.QUESTAO_V_OU_F);
-		
-		exercicio.cadastrarRespostaDoExercicio(r);
-		
-		try {
-			int quantAcertos = exercicio.corrigirExercicio("lp", "123");
-			assertEquals(2, quantAcertos);
-		} catch (ExercicioInexistenteException e1) {
-			fail("Não deve lançar essa exceção");
-		}		
 	}
 	
 }

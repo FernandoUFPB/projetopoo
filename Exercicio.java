@@ -1,8 +1,9 @@
 package br.com.ufpb.projetopoo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-public class Exercicio {
+public class Exercicio implements Serializable{
 	private String nomeExercicio;
 	private List<Questao> questoes;
 	public Exercicio(String nomeExercicio){

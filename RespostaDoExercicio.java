@@ -1,8 +1,9 @@
 package br.com.ufpb.projetopoo;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-public class RespostaDoExercicio{
+public class RespostaDoExercicio implements Serializable{
 	private Aluno aluno;
 	private Exercicio exercicio;
 	private List<RespostaDeQuestao> respostas;

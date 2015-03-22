@@ -1,6 +1,8 @@
 package br.com.ufpb.projetopoo;
 
-public abstract class Pessoa {
+import java.io.Serializable;
+
+public abstract class Pessoa implements Serializable {
 	private String nome;
 	private String matricula;
 	public Pessoa(String nome, String matricula){

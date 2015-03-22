@@ -1,6 +1,8 @@
 package br.com.ufpb.projetopoo;
 
-public class Aluno extends Pessoa{
+import java.io.Serializable;
+
+public class Aluno extends Pessoa implements Serializable{
 	public Aluno(){
 		super("sem nome","sem matricula");
 	}

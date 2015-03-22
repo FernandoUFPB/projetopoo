@@ -1,5 +1,6 @@
 package br.com.ufpb.projetopoo;
 
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -28,7 +29,7 @@ public class GUI extends JFrame{
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
 		Container c2 = new JPanel();
-		c2.setLayout(new GridLayout(18,2));
+		c2.setLayout(new GridLayout(18,6));
 		botao1=new JButton("Cadastrar Professor"); 
 		c2.add(botao1);
 		botao2=new JButton("Cadastrar Aluno");
@@ -81,6 +82,7 @@ public class GUI extends JFrame{
 				String matricula = JOptionPane.showInputDialog("Digite a Matricula: ");
 				try {
 					sistema.cadastrarProfessor(nome, matricula);
+					sistema.sairDoSistema();
 				} catch (ProfessorJaExisteException e1) {
 					JOptionPane.showMessageDialog(null,e1.getMessage());
 				}			
@@ -93,6 +95,7 @@ public class GUI extends JFrame{
 				String matricula = JOptionPane.showInputDialog("Digite a Matricula: ");
 				try {
 					sistema.cadastrarAluno(nome, matricula);
+					sistema.sairDoSistema();
 				} catch (AlunoJaExisteException e1) {
 					JOptionPane.showMessageDialog(null,e1.getMessage());
 				}			
@@ -132,6 +135,7 @@ public class GUI extends JFrame{
 						}
 					}		
 					sistema.cadastrarRespostaDoExercicio(r);
+					sistema.sairDoSistema();
 				} catch (ExercicioInexistenteException e) {
 					System.out.println(e.getMessage());
 				} 	
@@ -231,6 +235,7 @@ public class GUI extends JFrame{
 				String questao = JOptionPane.showInputDialog(null,"Digite a Nova Questão: ");
 				try {
 					sistema.atualizarExercício(nomeExercicio, numQuestao, questao);
+					sistema.sairDoSistema();
 				} catch (ExercicioInexistenteException e) {
 					JOptionPane.showMessageDialog(null,e.getMessage());
 				}	
@@ -328,7 +333,8 @@ public class GUI extends JFrame{
 						JOptionPane.showMessageDialog(null,"Tipo Questão Invalido!");
 					}
 				}
-				sistema.cadastrarExercicio(e);				
+				sistema.cadastrarExercicio(e);
+				sistema.sairDoSistema();
 			}			
 		});
 		botao15.addActionListener(new ActionListener (){
@@ -336,6 +342,7 @@ public class GUI extends JFrame{
 				String matriculaProf = JOptionPane.showInputDialog(null,"Digite a Matricula do Professor: "); 
 				try {
 					sistema.removeProfessor(matriculaProf);
+					sistema.sairDoSistema();
 				} catch (ProfessorInexistenteException e) {
 					JOptionPane.showMessageDialog(null,e.getMessage());
 				}
@@ -346,6 +353,7 @@ public class GUI extends JFrame{
 				String matricula = JOptionPane.showInputDialog(null,"Digite a Matricula do Aluno: ");
 				try {
 					sistema.removeAluno(matricula);
+					sistema.sairDoSistema();
 				} catch (AlunoInexistenteException e) {
 					JOptionPane.showMessageDialog(null,e.getMessage());
 				}				
@@ -356,6 +364,7 @@ public class GUI extends JFrame{
 				String nomeExercicio = JOptionPane.showInputDialog(null,"Digite o Nome do Exercicio: ");
 				try {
 					sistema.removeExercico(nomeExercicio);
+					sistema.sairDoSistema();
 				} catch (ExercicioInexistenteException e) {
 					JOptionPane.showMessageDialog(null,e.getMessage());
 				}
